@@ -20,7 +20,8 @@ void insertAfterGivenNode(Node** head, int position) {
 
     int len = getLen(*head);
 
-    if(((position > len) && position != len+1) || position < 1) {
+    if(((position > len) && position != len+1) || position < 1) { 
+        //! (position != len+1) add this condition for inserting element at end
         printf("Invalid position");
         return;
     }
