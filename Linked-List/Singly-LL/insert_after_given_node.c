@@ -6,6 +6,17 @@ typedef struct Node{
     struct Node *next;
 }Node;
 
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if( !newNode ) {
+        printf("memory allocation failed !");
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
 int getLen(Node* head) {
     int count = 0;
     Node* temp = head;
@@ -27,42 +38,34 @@ void insertAfterGivenNode(Node** head, int position) {
     }
     
     // making new node
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    if(newNode == NULL) {
-        printf("Memory Alocation Failed !");
-        return;
-    }
+    int data;
     printf("Enter data : ");
-    scanf("%d", &newNode->data);
-    newNode->next = NULL;
-
+    scanf("%d", &data);
+    Node* newNode = createNode(data);
 
     if(position == 1) {             // insert at head
-        newNode->next = *head;
-        *head = newNode;
+            newNode->next = *head;
+            *head = newNode;
     }
     else if(position == len+1) {      // insert at tail
-
-        Node* temp = *head;
-        while(temp->next != NULL) {
-            temp = temp->next;
-        }
-        temp->next = newNode;
-
+            Node* temp = *head;
+            while(temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
     }
     else {                           // general case
-        Node* prev = NULL;
-        Node* curr = *head;
-        while(position != 1) {
-            position--;
-            prev = curr;
-            curr = curr->next;
-        }
-        prev->next = newNode;
-        newNode->next = curr;
+            Node* prev = NULL;
+            Node* curr = *head;
+            while(position != 1) {
+                position--;
+                prev = curr;
+                curr = curr->next;
+            }
+            prev->next = newNode;
+            newNode->next = curr;
     }
 }
-
 
 void printLL(Node* head) {
     Node* temp;
@@ -75,35 +78,28 @@ void printLL(Node* head) {
 
 
 int main() {
-    Node *newNode, *head, *temp;
+    Node *head = NULL, *temp;
     int choise = 1;
-    head = NULL;
 
     while(choise) {
-        newNode = (Node*)malloc(sizeof(Node));
-        if(newNode == NULL) {
-            printf("Memory Alocation Failed !");
-            return 1;
-        }
-        printf("Enter data : ");
-        scanf("%d", &newNode->data);
-        newNode->next = NULL;
-
+        int data;
+        printf("Enter Data : ");
+        scanf("%d", &data);
+        Node* newNode = createNode(data);
+        
         if(head == NULL) {
             head = temp = newNode;
         }else{
             temp->next = newNode;
             temp = newNode;
         }
-
         printf("Do you want to continue ? (0/1) : ");
         scanf("%d",&choise);
     }
-
     printLL(head);
 
     int pos;
-    printf("\nEnter position : ");
+    printf("\n\nEnter position for inserting new node/data: ");
     scanf("%d", &pos);
 
     insertAfterGivenNode(&head, pos);
