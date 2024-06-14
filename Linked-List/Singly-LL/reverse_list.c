@@ -6,10 +6,23 @@ typedef struct Node {
     struct Node* next;
 }Node;
 
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if(!newNode) {
+        printf("memory allocation failed!");
+        exit(1);
+    }
+    else {
+        newNode->data = data;
+        newNode->next = NULL;
+        return newNode;
+    }
+}
+
 void printLL(Node* head) {
     Node* temp = head;
     printf("\nLinked List : ");
-    while(temp != NULL) {
+    while(temp != NULL) { 
         printf("%d->", temp->data);
         temp = temp->next;
     }
@@ -37,11 +50,11 @@ int main() {
     int choise = 1;
 
     while(choise) {
-        newNode = (Node*)malloc(sizeof(Node));
+        int data;
         printf("Enter data : ");
-        scanf("%d", &newNode->data);
-        newNode->next = NULL;
-
+        scanf("%d", &data);
+        Node* newNode = createNode(data);
+        
         if(head == NULL) {
             head = temp = newNode;
         }else {
