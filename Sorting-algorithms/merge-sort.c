@@ -8,17 +8,17 @@ void solve(int *arr, int s, int e) {
    int left_len = (mid - s + 1);
    int right_len = (e - mid);
 
-   //* creat two new array
+   // creat two new array
    int* left_arr = (int*)malloc(left_len * sizeof(int));
    int* right_arr = (int*)malloc(right_len * sizeof(int));
 
-   //* copying element from original to left_arr
+   // copying element from original to left_arr
    int idx = s;
       for(int i=0; i<left_len; i++) {
          left_arr[i] = arr[idx];
          idx++;
       }
-   //* copying element from original to right_arr
+   // copying element from original to right_arr
    idx = mid+1;
       for(int i=0; i<right_len; i++) {
          right_arr[i] = arr[idx];
@@ -57,10 +57,10 @@ void mergeSort(int *arr, int s, int e) {
    }
    int mid = s + (e-s)/2;
 
-   //* sort left part 
+   // sort left part 
    mergeSort(arr, s, mid);
 
-   //* sort right part
+   // sort right part
    mergeSort(arr, mid+1, e);
 
    solve(arr, s, e);
