@@ -2,6 +2,14 @@
 #include<math.h>
 #define MAX 20
 
+void init(int p[])
+{
+    int i;
+    for(i = 0; i < MAX; i++) {
+    	p[i] = 0;
+	}
+}
+
 void read(int p[])
 {
     int n, i, power, coeff;
@@ -11,7 +19,7 @@ void read(int p[])
     /* read n terms */
     for (i=0;i<n;i++)
     {       
-        printf("\n enter a term (power & coeff) : ");
+        printf(" enter a term (power & coeff) : ");
         scanf("%d%d",&power,&coeff);
         p[power] = coeff;
     }
@@ -41,14 +49,6 @@ void  multiply(int p1[], int p2[], int p3[])
             p3[i+j] = p3[i+j]+p1[i]*p2[j];
         }
     }
-}
-
-void init(int p[])
-{
-    int i;
-    for(i = 0; i < MAX; i++) {
-    	p[i] = 0;
-	}
 }
 
 int main()
