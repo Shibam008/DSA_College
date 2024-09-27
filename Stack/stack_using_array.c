@@ -11,7 +11,7 @@ typedef struct {
 
 stack* createStack(int size) {
       stack* st = (stack*)malloc(sizeof(stack));
-      st->arr = (int*)malloc(sizeof(int));
+      st->arr = (int*)malloc(size*sizeof(int));
       st->size = size;
       st->top = -1;
       return st;
@@ -57,7 +57,7 @@ void print(stack* st) {
    printf("Top index : %d\n", st->top);
    printf("Top element : %d\n", getTop(st));
    printf("Stack : ");
-   for(int i=0; i<getSize(st); i++) {
+   for(int i=0; i<=st->top; i++) {
       printf("%d ", st->arr[i]);
    }
    printf("\n\n");
